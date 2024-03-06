@@ -4,8 +4,8 @@ import React, { useRef, useState, FormEvent} from "react";
 import {useDispatch} from "react-redux";
 import delete_icon from '../../asset/svg/delete_icon.svg'
 import add_icon from '../../asset/svg/add_icon.svg'
-import arrow_up from '../../asset/svg/arrow_up.png'
-import arrow_down from '../../asset/svg/arrow_down.png'
+import arrow_up from '../../asset/arrow_up.png'
+import arrow_down from '../../asset/arrow_down.png'
 import { defaultValueMock, DefaultValueType} from "./mock_data/home_data";
 import {updateDataVolumeDiscount} from "../../api/home/homePageApi";
 import {ReducerType} from "../../store/configReducer";
