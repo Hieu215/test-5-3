@@ -19,6 +19,9 @@ const Home = () => {
 
 
     const [defaultData, setDefaultData] = useState<DefaultValueType[]>(defaultValueMock)
+    const [required, setRequired] = useState<{title: boolean, campaign: boolean, rule: boolean}>({title: false, campaign: false, rule: false})
+    const [title, setTitle] = useState<string>('')
+    const [campaign, setCampaign] = useState<string>('')
     const switchDiscountType: Record<number, string> = {
         1: 'None',
         2: '% discount', // %
@@ -60,19 +63,37 @@ const Home = () => {
         const newPostApi = {...data, defaultValue: defaultData}
         dispatch({type: 'set', newPostApi})
         updateDataVolumeDiscount(newPostApi)
+        console.log(data);
     }
-    const handleFormSubmit = (data: any) => {
-
-        if(defaultData.length > 0) {
-            handleSubmit(onSubmit)(data);
+    const handleValidation = () => {
+        if (defaultData.length > 0 && title !== '' && campaign!== '') {
+            setRequired({title: false, campaign:false, rule: false })
+            return true;
         } else {
-            console.error("Validation failed.");
+            if(defaultData.length <= 0) {
+                setRequired({...required, rule: true})
+            }
+            if(title === '') {
+                setRequired({...required, title: true})
+            }
+            if(campaign === '') {
+                setRequired({...required, campaign: true})
+            }
+            return false; 
         }
     };
+    const handleSaveClick = () => {
+        if (handleValidation()) {
+            const formData = new FormData(formRef.current!);
+            const data = Object.fromEntries(formData.entries());
+            onSubmit(data);
+        }
+    };
+    
     return (
-        <form ref={formRef} onSubmit={handleFormSubmit}>
+        <form ref={formRef}>
             <div className="submit_btn">
-                <button className="details" type="submit">Save</button>
+                <button className="details" type="button" onClick={handleSaveClick}>Save</button>
             </div>
             <Grid>
                 <Grid.Cell columnSpan={{xs: 6, sm: 6, md: 6, lg: 7, xl: 7}}>
@@ -87,13 +108,14 @@ const Home = () => {
                                     {...register("campaign", {required: true })}
                                     className="input"
                                     placeholder="Volume discount #2"
+                                    defaultValue={campaign} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCampaign(e.target.value)}
                                 />
-                                {errors?.campaign?.type === "required" && <p className="err_msg">Please enter this field</p>}
+                                {required?.campaign && <p className="err_msg">Please enter this field</p>}
                             </div>
                             <div className="form_input">
                                 <label className="label">title</label>
-                                <input {...register("title", {required: true})} className="input" placeholder="Buy more and save"/>
-                                {errors?.title?.type === "required" && <p className="err_msg">Please enter this field</p>}
+                                <input {...register("title", {required: true})} className="input" placeholder="Buy more and save" defaultValue={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}/>
+                                {required?.title && <p className="err_msg">Please enter this field</p>}
                             </div>
                             <div className="form_input">
                                 <label className="label">description</label>
@@ -265,6 +287,8 @@ const Home = () => {
                                 </Text>
                             </div>
                         </div>
+                        {required.rule && <p className="err_msg">Please add at least 1 option</p>}
+
                     </Card>
                 </Grid.Cell>
                 <Grid.Cell columnSpan={{xs: 6, sm: 6, md: 6, lg: 5, xl: 5}}>
