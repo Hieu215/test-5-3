@@ -1,5 +1,4 @@
 body {
-  background-color: red;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -9,6 +8,215 @@ body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
-.aa {
-  background-color: red;
+.general_card {
+  padding-bottom: 16px;
+}
+input {
+  border-radius: 8px;
+  border: 1px solid;
+  outline: none;
+  padding: 0 12px;
+}
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.submit_btn {
+  display: flex;
+  justify-content: end;
+  padding-bottom: 16px;
+  .details {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    &:hover {
+      background-color: #17a2b8;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
+.form_input {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  .label {
+    width: 100%;
+    padding-bottom: 4px;
+  }
+  .input {
+    width: 100%;
+    height: 40px;
+  }
+}
+.err_msg {
+  padding-top: 4px;
+  color: red;
+  font-weight: 500;
+  font-size: 13px;
+}
+.Polaris-DataTable__Cell--verticalAlignTop {
+  text-align: end !important;
+}
+.rule_text {
+  padding: 16px;
+}
+.rule_form {
+  border-top: 8px solid rgba(241, 241, 241, 1);
+  .option {
+    height: 40px;
+    background-color: #FF4500;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 120px;
+    min-width: 50px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom-right-radius: 16px;
+  }
+  .delete_icon {
+    padding-right: 16px;
+    .details_icon {
+      cursor: pointer;
+    }
+  }
+  .rule_form_input_group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    row-gap: 1em;
+    padding: 16px;
+    .none_input {
+      display: none;
+    }
+    .rule_form_input {
+      padding-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      .rule_input {
+        height: 40px;
+        padding: 0 12px;
+      }
+      .rule_input_none {
+        display: none;
+      }
+      .rule_input_custom {
+        height: 40px;
+      }
+      .custom_none_input {
+        position: relative;
+        height: 40px;
+        width: 100%;
+        padding: 0px 12px;
+        border-radius: 8px;
+        border: 1px solid;
+        outline: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        .arrow_up {
+          position: absolute;
+          top:2px;
+          right: 0;
+          height: 18px;
+          width: 18px;
+          border-top-right-radius: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .arrow_up_img {
+            width: 12px;
+            height: 12px;
+          }
+        }
+        .arrow_down {
+          position: absolute;
+          bottom: 2px;
+          right: 0;
+          width: 18px;
+          height: 18px;
+          border-bottom-right-radius: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .arrow_down_img {
+            width: 12px;
+            height: 12px;
+          }
+        }
+
+      }
+    }
+    .rule_form_input_amount {
+      padding-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .rule_input {
+        height: 40px;
+        padding: 0 12px;
+      }
+
+      .rule_input_amount_sub {
+        position: absolute;
+        right: 12px;
+        top: 30px;
+      }
+      .rule_input_none {
+        display: none;
+      }
+      .rule_input_custom {
+        height: 40px;
+      }
+    }
+  }
+  .delete_icon {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.add_rule {
+  display: flex;
+  justify-content: center;
+  height: 58px;
+  border-top: 8px solid rgba(241, 241, 241, 1);
+  .add_rule_detail {
+    background-color: #FF4500;
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    width: 70%;
+    color: white;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    .add_icon {
+      border-radius: 50%;
+    }
+  }
+}
+@media only screen and (max-width: 650px) {
+  .rule_form {
+    .rule_form_input_group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+}
+@media only screen and (max-width: 400px) {
+  .rule_form {
+    .rule_form_input_group {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 }

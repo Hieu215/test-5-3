@@ -1,3 +1,3 @@
-export const getData = async () => {
-    const reslut = await localStorage.getItem()
+export const updateDataVolumeDiscount = (data: any) => {
+    localStorage.setItem('volumeDiscount', JSON.stringify(data))
 }
